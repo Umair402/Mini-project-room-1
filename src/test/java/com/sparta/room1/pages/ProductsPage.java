@@ -13,7 +13,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 import java.util.List;
 
 
-@DefaultUrl("https://automationexercise.com/")
+@DefaultUrl("https://automationexercise.com/products")
 public class ProductsPage extends PageObject {
 
     @FindBy(css = ".add-to-cart")
@@ -34,6 +34,9 @@ public class ProductsPage extends PageObject {
     @FindBy(id = "quantity")
     private WebElementFacade quantityInput;
 
+    @FindBy(className = "fc-cta-consent")
+    private WebElementFacade consentButton;
+
     public void addToCartFromProductPage(int index){
         AddToCartButtons.get(index).click();
     }
@@ -45,7 +48,7 @@ public class ProductsPage extends PageObject {
     public void pressCartButton(){
         shopMenuButtons.get(3).click();
     }
-    
+
     public void enterQuantityValue(String quantity){
         quantityInput.type(quantity);
     }
@@ -54,7 +57,10 @@ public class ProductsPage extends PageObject {
         goToCartAfterAddingButton.click();
     }
 
-
+    public void clickConsent() {
+        waitFor(consentButton).waitUntilClickable();
+        consentButton.click();
+    }
 
 
 }

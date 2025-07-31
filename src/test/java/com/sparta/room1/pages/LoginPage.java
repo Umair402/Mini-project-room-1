@@ -27,7 +27,18 @@ public class LoginPage extends PageObject {
     @FindBy(xpath = "//p[contains(text(),\"Your email or password is incorrect!\")]")
     private WebElementFacade errorMessage;
 
-    
+    @FindBy(xpath = "//input[@data-qa='signup-name']")
+    private WebElementFacade nameField;
+
+    @FindBy(xpath = "//input[@data-qa='signup-name']")
+    private WebElementFacade emailSignUpField;
+
+    @FindBy(xpath = "//h2[contains(text(),'New User Signup!')]")
+    private WebElementFacade newUserSignup;
+
+    @FindBy(xpath = "//button[@data-qa='signup-button']")
+    private WebElementFacade signupButton;
+  
     public void enterUsername(String username) {
         waitFor(emailField).waitUntilVisible().waitUntilEnabled();
         emailField.type(username);
@@ -73,4 +84,32 @@ public class LoginPage extends PageObject {
     public String getCurrentPageUrl() {
         return getDriver().getCurrentUrl();
     }
+
+    public boolean isNewUserSignupVisible()
+    {
+        return newUserSignup.isVisible();
+    }
+
+    public void enterName(String name)
+    {
+        nameField.type(name);
+    }
+
+    public void entersignupEmail(String email)
+    {
+        emailSignUpField.type(email);
+    }
+
+    public void clickSignup()
+    {
+        signupButton.click();
+    }
+
+    public void signUpAs(String name, String email)
+    {
+        enterName(name);
+        entersignupEmail(email);
+        clickSignup();
+    }
+
 }

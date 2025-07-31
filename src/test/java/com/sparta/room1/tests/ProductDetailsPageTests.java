@@ -41,11 +41,33 @@ public class ProductDetailsPageTests {
 
         productsPage.open();
         productsPage.clickConsent();
-        productsPage.goToProductDetailsPage(0);
+        productsPage.goToProductDetailsPage(1);
         productDetailsPage.setQuantityTo4();
         productDetailsPage.addToCart();
         productDetailsPage.viewCart();
         assertThat(cartPage.getCartQuantity(), containsString("4"));
+
+
+    }
+
+
+    @Test
+    @DisplayName("""
+            Given I am on the Products page
+            When I click "View Product" for any product
+            And I set the product quantity to 0
+            And I click the "Add to cart" button
+            And I Click the cart Navigation cart button
+            Then I should see an Empty cart! message""")
+    public void cartEmpty()  {
+
+        productsPage.open();
+        productsPage.clickConsent();
+        productsPage.goToProductDetailsPage(1);
+        productDetailsPage.setQuantityToAlphaNumeric();
+        productDetailsPage.addToCart();
+        productDetailsPage.viewNavCart();
+        assertThat(cartPage.getCartEmptyText(), containsString("Cart is empty!"));
 
 
     }

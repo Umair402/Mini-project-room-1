@@ -6,6 +6,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.Keys;
 
+import java.util.List;
+
 @DefaultUrl("https://automationexercise.com/product_details")
 public class ProductDetailsPage extends PageObject {
 
@@ -18,6 +20,8 @@ public class ProductDetailsPage extends PageObject {
     @FindBy(tagName = "u")
     private WebElementFacade viewCart;
 
+    @FindBy(css = "a[href*='/view_cart']")
+    private WebElementFacade navCart;
 
 //    @FindBy(className = "btn btn-default cart")
 //    private WebElementFacade ViewCart;
@@ -29,6 +33,13 @@ public class ProductDetailsPage extends PageObject {
 
     }
 
+    public void setQuantityToAlphaNumeric(){
+        cartQuantity.click();
+        cartQuantity.sendKeys(Keys.chord(Keys.CONTROL, "v"));
+
+
+    }
+
     public void addToCart() {
         addToCart.click();
     }
@@ -37,6 +48,9 @@ public class ProductDetailsPage extends PageObject {
         viewCart.click();
     }
 
+    public void viewNavCart() {
+        navCart.click();
+    }
 
 
 }

@@ -11,11 +11,20 @@ public class CartPage extends PageObject {
     @FindBy(className = "disabled")
     private WebElementFacade cartQuantity;
 
+    @FindBy(id = "empty_cart")
+    private WebElementFacade emptyCartBlock;
+
 
     public String getCartQuantity() {
         waitFor(cartQuantity).waitUntilVisible().waitUntilEnabled();
         return cartQuantity.getText();
     }
+
+    public String getCartEmptyText() {
+        waitFor(emptyCartBlock).waitUntilVisible().waitUntilEnabled();
+        return emptyCartBlock.getTextContent();
+    }
+
 
 
 

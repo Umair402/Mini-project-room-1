@@ -1,56 +1,67 @@
 package com.sparta.room1.pages;
 
-import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.pages.WebElementFacade;
-import org.checkerframework.framework.qual.DefaultQualifier;
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 
 @DefaultUrl("https://automationexercise.com/login")
 public class LoginPage extends PageObject {
 
-    @FindBy(xpath = "//*[@data-qa='login-email']")
-    private WebElementFacade emailFieldLogin;
+    @FindBy(xpath = "//input[@data-qa='login-email']")
+    private WebElementFacade emailField;
 
-    @FindBy(xpath = "//*[@data-qa='password']")
-    private WebElementFacade passordField;
+    @FindBy(xpath = "//input[@data-qa='login-password']")
+    private WebElementFacade passwordField;
 
-    @FindBy(xpath = "//*[@data-qa='signup-name']")
-    private WebElementFacade nameField;
-
-    @FindBy(xpath = "//*[@data-qa='signup-email']")
-    private WebElementFacade emailFieldSignup;
-
-    @FindBy(xpath = "//*[@data-qa='login-button']")
+    @FindBy(xpath = "//button[@data-qa='login-button']")
     private WebElementFacade loginButton;
 
-    @FindBy(xpath = "//*[@data-qa='signup-button']")
-    private WebElementFacade signupButton;
+    @FindBy(xpath = "//a[contains(text(),'Logged in as')]")
+    private WebElementFacade loggedInAsMessage;
 
+    @FindBy(xpath = "//p[contains(text(),'Your email or password is incorrect!')]")
+    private WebElementFacade errorMessage;
 
-
-    public void enterEmailLogin(String email)
-    {
-        emailFieldLogin.type(email);
+    public void enterUsername(String username) {
+        emailField.type(username);
     }
 
-    public void enterPasswordLogin(String password)
-    {
-        passordField.type(password);
+    public void enterPassword(String password) {
+        passwordField.type(password);
     }
 
-    public void enterNameSignup(String name)
-    {
-        nameField.type(name);
+    public void clickLogin() {
+        loginButton.click();
     }
 
-    public void enterEmailSignup(String email)
-    {
-        emailFieldSignup.type(email);
+    public void loginAs(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
     }
 
+    // ✅ Check for successful login message
+    public boolean isLoginSuccessful() {
+        return loggedInAsMessage.isDisplayed();
+    }
 
+    public String getLoggedInMessageText() {
+        return loggedInAsMessage.getText();
+    }
 
+    // ✅ Check for login failure
+    public boolean isLoginErrorDisplayed() {
+        return errorMessage.isVisible();
+    }
 
+    public String getErrorMessageText() {
+        return errorMessage.getText();
+    }
+
+    // ✅ Optionally expose the current URL
+    public String getCurrentPageUrl() {
+        return getDriver().getCurrentUrl();
+    }
 }

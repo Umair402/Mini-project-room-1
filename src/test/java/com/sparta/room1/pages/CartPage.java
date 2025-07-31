@@ -17,4 +17,7 @@ public class CartPage extends PageObject {
         return cartQuantity.getText();
     }
 
+
+
+
 }

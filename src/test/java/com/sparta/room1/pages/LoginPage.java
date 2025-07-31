@@ -9,40 +9,51 @@ import org.openqa.selenium.By;
 @DefaultUrl("https://automationexercise.com/login")
 public class LoginPage extends PageObject {
 
-    @FindBy(xpath = "//input[@data-qa='login-email']")
+    @FindBy(css = "input[data-qa='login-email']")
     private WebElementFacade emailField;
 
-    @FindBy(xpath = "//input[@data-qa='login-password']")
+    @FindBy(css = "input[data-qa='login-password']")
     private WebElementFacade passwordField;
 
-    @FindBy(xpath = "//button[@data-qa='login-button']")
+    @FindBy(css = "button[data-qa='login-button']")
     private WebElementFacade loginButton;
 
-    @FindBy(xpath = "//a[contains(text(),'Logged in as')]")
+    @FindBy(className = "fc-cta-consent")
+    private WebElementFacade consentButton;
+
+    @FindBy(xpath = "//a[contains(text(),\"Logged in as\")]")
     private WebElementFacade loggedInAsMessage;
 
-    @FindBy(xpath = "//p[contains(text(),'Your email or password is incorrect!')]")
+    @FindBy(xpath = "//p[contains(text(),\"Your email or password is incorrect!\")]")
     private WebElementFacade errorMessage;
 
+    
     public void enterUsername(String username) {
+        waitFor(emailField).waitUntilVisible().waitUntilEnabled();
         emailField.type(username);
     }
 
     public void enterPassword(String password) {
+        waitFor(passwordField).waitUntilVisible().waitUntilEnabled();
         passwordField.type(password);
     }
 
     public void clickLogin() {
+        waitFor(loginButton).waitUntilClickable();
         loginButton.click();
+    }
+    public void clickConsent() {
+        waitFor(consentButton).waitUntilClickable();
+        consentButton.click();
     }
 
     public void loginAs(String username, String password) {
+        waitFor(emailField);
         enterUsername(username);
         enterPassword(password);
         clickLogin();
     }
 
-    // ✅ Check for successful login message
     public boolean isLoginSuccessful() {
         return loggedInAsMessage.isDisplayed();
     }
@@ -51,7 +62,6 @@ public class LoginPage extends PageObject {
         return loggedInAsMessage.getText();
     }
 
-    // ✅ Check for login failure
     public boolean isLoginErrorDisplayed() {
         return errorMessage.isVisible();
     }
@@ -60,7 +70,6 @@ public class LoginPage extends PageObject {
         return errorMessage.getText();
     }
 
-    // ✅ Optionally expose the current URL
     public String getCurrentPageUrl() {
         return getDriver().getCurrentUrl();
     }

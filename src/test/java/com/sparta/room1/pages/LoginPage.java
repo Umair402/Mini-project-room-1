@@ -4,7 +4,6 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.By;
 
 @DefaultUrl("https://automationexercise.com/login")
 public class LoginPage extends PageObject {
@@ -24,14 +23,14 @@ public class LoginPage extends PageObject {
     @FindBy(xpath = "//p[contains(text(),'Your email or password is incorrect!')]")
     private WebElementFacade errorMessage;
 
-    @FindBy(xpath = "//input[@data-qa='signup-name']")
-    private WebElementFacade nameField;
-
-    @FindBy(xpath = "//input[@data-qa='signup-name']")
-    private WebElementFacade emailSignUpField;
-
     @FindBy(xpath = "//h2[contains(text(),'New User Signup!')]")
     private WebElementFacade newUserSignup;
+
+    @FindBy(xpath = "//input[@data-qa='signup-name']")
+    private WebElementFacade signupName;
+
+    @FindBy(xpath = "//input[@data-qa='signup-email']")
+    private WebElementFacade signupEmail;
 
     @FindBy(xpath = "//button[@data-qa='signup-button']")
     private WebElementFacade signupButton;
@@ -77,31 +76,19 @@ public class LoginPage extends PageObject {
         return getDriver().getCurrentUrl();
     }
 
-    public boolean isNewUserSignupVisible()
-    {
+    public boolean isNewUserSignupVisible() {
         return newUserSignup.isVisible();
     }
 
-    public void enterName(String name)
-    {
-        nameField.type(name);
+    public void enterSignupName(String name) {
+        signupName.type(name);
     }
 
-    public void entersignupEmail(String email)
-    {
-        emailSignUpField.type(email);
+    public void enterSignupEmail(String email) {
+        signupEmail.type(email);
     }
 
-    public void clickSignup()
-    {
+    public void clickSignup() {
         signupButton.click();
     }
-
-    public void signUpAs(String name, String email)
-    {
-        enterName(name);
-        entersignupEmail(email);
-        clickSignup();
-    }
-
 }

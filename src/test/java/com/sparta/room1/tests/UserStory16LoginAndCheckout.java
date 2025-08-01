@@ -1,7 +1,6 @@
 package com.sparta.room1.tests;
 
-import com.sparta.room1.pages.LoginPage;
-import com.sparta.room1.pages.ProductsPage;
+import com.sparta.room1.pages.*;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.thucydides.core.annotations.Managed;
 import org.junit.jupiter.api.DisplayName;
@@ -24,6 +23,15 @@ public class UserStory16LoginAndCheckout {
     @Managed
     ProductsPage productsPage;
 
+    @Managed
+    CartPage cartPage;
+
+    @Managed
+    CheckoutPage checkoutPage;
+
+    @Managed
+    PaymentPage paymentPage;
+
 
     @Test
     @DisplayName("When I register successfully, and add an item to cart I should be able to check out correctly")
@@ -40,6 +48,23 @@ public class UserStory16LoginAndCheckout {
         productsPage.goToCartAfterAddingItem();
         currentUrl = productsPage.getDriver().getCurrentUrl();
         assertThat(currentUrl, containsString("automationexercise.com/view_cart"));
+        cartPage.proceedToCheckout();
+        currentUrl = productsPage.getDriver().getCurrentUrl();
+        assertThat(currentUrl, containsString("automationexercise.com/checkout"));
+        checkoutPage.scrollToItem();
+        checkoutPage.proceedToCheckout();
+        currentUrl = productsPage.getDriver().getCurrentUrl();
+        assertThat(currentUrl, containsString("automationexercise.com/payment"));
+        paymentPage.enterCardName("ABCDEFG");
+        paymentPage.enterCardNumber("12345566789");
+        paymentPage.enterCVCNumber("311");
+        paymentPage.enterExpiryDate("07", "2030");
+        paymentPage.scrollToItem();
+        paymentPage.pay();
+        currentUrl = productsPage.getDriver().getCurrentUrl();
+        assertThat(currentUrl, containsString("automationexercise.com/payment_done"));
+
+
 
 
     }

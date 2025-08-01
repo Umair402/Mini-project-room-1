@@ -11,7 +11,6 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
-import javax.swing.*;
 import java.util.List;
 
 
@@ -56,7 +55,7 @@ public class ProductsPage extends PageObject {
     public void pressCartButton(){
         shopMenuButtons.get(3).click();
     }
-
+    
     public void enterQuantityValue(String quantity){
         quantityInput.type(quantity);
     }
@@ -69,7 +68,6 @@ public class ProductsPage extends PageObject {
         waitFor(consentButton).waitUntilClickable();
         consentButton.click();
     }
-
     public void scrollToItem(){
         Actions action = new Actions(getDriver());
         action.scrollByAmount(0,600).perform();

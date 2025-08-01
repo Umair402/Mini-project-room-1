@@ -66,8 +66,9 @@ And I click the "Add to cart" button
 And I click the "View Cart" button
 Then I should see the product in the cart with quantity 4
 ```
-```gherkin
+
 ### Test Case 4
+```gherkin
 Product Page (Sad) - Check product quantity
 Given I am on the Products page
 When I click "View Product" for any product

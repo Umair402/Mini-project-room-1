@@ -34,6 +34,9 @@ public class ProductsPage extends PageObject {
     @FindBy(id = "quantity")
     private WebElementFacade quantityInput;
 
+    @FindBy(className = "fc-cta-consent")
+    private WebElementFacade consentButton;
+
     public void addToCartFromProductPage(int index){
         AddToCartButtons.get(index).click();
     }
@@ -54,7 +57,10 @@ public class ProductsPage extends PageObject {
         goToCartAfterAddingButton.click();
     }
 
-
+    public void clickConsent() {
+        waitFor(consentButton).waitUntilClickable();
+        consentButton.click();
+    }
 
 
 }

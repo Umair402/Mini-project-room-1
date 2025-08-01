@@ -14,12 +14,8 @@ public class ProductDetailsPage extends PageObject {
     @FindBy(className = "btn btn-default cart")
     private WebElementFacade addToCart;
 
-    @FindBy(className = "btn btn-default cart")
-    private WebElementFacade addToCart;
-
-
-
-
+   // @FindBy(className = "btn btn-default cart")
+    //private WebElementFacade addToCart;
     //btn btn-default cart
 
 }

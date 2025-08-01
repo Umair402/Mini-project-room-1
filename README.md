@@ -31,7 +31,7 @@ And they should see the account created message
 
 ### Test Case 2
 ```gherkin
-Register User (Happy) - successfully logged in
+User login (Happy) - successfully logged in
 Given I launch the browser
 And I navigate to "http://automationexercise.com/"
 Then I should see the home page
@@ -41,4 +41,38 @@ When I enter a correct  email address and password
 And I click the "Login" button
 Then I should be logged in
 And be able to checkout
+```
+
+### Test Case 2
+```gherkin
+User login (Sad) - Incorrect email and password
+Given I launch the browser
+And I navigate to "http://automationexercise.com"
+Then I should see the home page
+When I click on the "Signup / Login" button
+Then I should see "Login to your account" visible
+When I enter an incorrect email address and password
+And I click the "Login" button
+Then I should see the error message "Your email or password is incorrect!" visible
+```
+
+### Test Case 3
+```gherkin
+Product Page (Happy) - Check product quantity
+Given I am on the products page
+When I click "View Product" for any product on the product page
+And I set the product quantity to 4
+And I click the "Add to cart" button
+And I click the "View Cart" button
+Then I should see the product in the cart with quantity 4
+```
+```gherkin
+### Test Case 4
+Product Page (Sad) - Check product quantity
+Given I am on the Products page
+When I click "View Product" for any product
+And I set the product quantity to alphanumeric
+And I click the "Add to cart" button
+And I Click the cart Navigation cart button
+Then I should see an Empty cart! message
 ```

@@ -26,3 +26,14 @@ And they enter valid personal information
 Then their account should be successfully created
 And they should see the account created message
 ```
+```gherkin
+Given I launch the browser
+And I navigate to "http://automationexercise.com/"
+Then I should see the home page
+When I click on the "Login" button
+Then I should see "Login to your account" visible
+When I enter a correct  email address and password
+And I click the "Login" button
+Then I should be logged in
+And be able to checkout
+```

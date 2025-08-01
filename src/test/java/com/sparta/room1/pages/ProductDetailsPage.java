@@ -6,6 +6,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.Keys;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 @DefaultUrl("https://automationexercise.com/product_details")
@@ -34,9 +36,12 @@ public class ProductDetailsPage extends PageObject {
     }
 
     public void setQuantityToAlphaNumeric(){
+
+        String alphaNumericText = "abc";
+        StringSelection stringSelection = new StringSelection(alphaNumericText);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
         cartQuantity.click();
         cartQuantity.sendKeys(Keys.chord(Keys.CONTROL, "v"));
-
 
     }
 

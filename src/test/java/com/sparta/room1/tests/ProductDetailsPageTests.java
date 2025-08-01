@@ -55,7 +55,7 @@ public class ProductDetailsPageTests {
     @DisplayName("""
             Given I am on the Products page
             When I click "View Product" for any product
-            And I set the product quantity to 0
+            And I set the product quantity to alphanumeric
             And I click the "Add to cart" button
             And I Click the cart Navigation cart button
             Then I should see an Empty cart! message""")

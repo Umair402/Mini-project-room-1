@@ -35,9 +35,6 @@ public class UserStory16LoginAndCheckout {
         loginPage.clickLogin();
         String currentUrl = loginPage.getDriver().getCurrentUrl();
         assertThat(currentUrl, containsString("automationexercise.com/"));
-        //Continue to products page
-        //productsPage.open();
-        //productsPage.clickConsent();
         productsPage.scrollToItem();
         productsPage.addToCartFromProductPage(1);
         productsPage.goToCartAfterAddingItem();

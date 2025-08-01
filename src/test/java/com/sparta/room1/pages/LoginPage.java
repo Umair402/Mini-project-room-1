@@ -4,7 +4,6 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.By;
 
 @DefaultUrl("https://automationexercise.com/login")
 public class LoginPage extends PageObject {
@@ -27,7 +26,18 @@ public class LoginPage extends PageObject {
     @FindBy(xpath = "//p[contains(text(),\"Your email or password is incorrect!\")]")
     private WebElementFacade errorMessage;
 
-    
+    @FindBy(xpath = "//h2[contains(text(),'New User Signup!')]")
+    private WebElementFacade newUserSignup;
+
+    @FindBy(xpath = "//input[@data-qa='signup-name']")
+    private WebElementFacade signupName;
+
+    @FindBy(xpath = "//input[@data-qa='signup-email']")
+    private WebElementFacade signupEmail;
+
+    @FindBy(xpath = "//button[@data-qa='signup-button']")
+    private WebElementFacade signupButton;
+  
     public void enterUsername(String username) {
         waitFor(emailField).waitUntilVisible().waitUntilEnabled();
         emailField.type(username);
@@ -72,5 +82,21 @@ public class LoginPage extends PageObject {
 
     public String getCurrentPageUrl() {
         return getDriver().getCurrentUrl();
+    }
+
+    public boolean isNewUserSignupVisible() {
+        return newUserSignup.isVisible();
+    }
+
+    public void enterSignupName(String name) {
+        signupName.type(name);
+    }
+
+    public void enterSignupEmail(String email) {
+        signupEmail.type(email);
+    }
+
+    public void clickSignup() {
+        signupButton.click();
     }
 }

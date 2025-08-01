@@ -25,8 +25,7 @@ public class ProductDetailsPage extends PageObject {
     @FindBy(css = "a[href*='/view_cart']")
     private WebElementFacade navCart;
 
-//    @FindBy(className = "btn btn-default cart")
-//    private WebElementFacade ViewCart;
+
 
     public void setQuantityTo4(){
         cartQuantity.sendKeys(Keys.ARROW_UP);
@@ -56,6 +55,7 @@ public class ProductDetailsPage extends PageObject {
     public void viewNavCart() {
         navCart.click();
     }
+
 
 
 }

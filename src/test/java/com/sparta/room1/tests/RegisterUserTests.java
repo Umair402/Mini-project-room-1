@@ -38,7 +38,12 @@ public class RegisterUserTests {
     DeleteAccountPage deleteAccountPage;
 
     @Test
-    @DisplayName("")
+    @DisplayName("""
+        Given a user wants to create a new account
+        When they provide a valid username and email
+        And they enter valid personal information
+        Then their account should be successfully created
+        And they should see the account created message""")
     public void registerUserTest() {
 
         var name = "New User";

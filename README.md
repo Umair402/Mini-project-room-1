@@ -6,7 +6,14 @@ Object Model pattern.
 The following is required
 - Java 22
 - Apache Maven
-
+ 
+### Run Tests
+To run the tests, from the project root directory run:
+```shell
+mvn clean test
+```
+ 
+### Generate Senerity Report
 To generate the Serenity test report, from the project root directory run:
 ```shell
 mvn clean verify

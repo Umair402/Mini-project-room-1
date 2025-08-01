@@ -14,6 +14,9 @@ public class CartPage extends PageObject {
     @FindBy(id = "empty_cart")
     private WebElementFacade emptyCartBlock;
 
+    @FindBy(xpath = "/html/body/section/div/section/div[1]/div/div/a")
+    private WebElementFacade proceedToCheckoutButton;
+
 
     public String getCartQuantity() {
         waitFor(cartQuantity).waitUntilVisible().waitUntilEnabled();
@@ -25,8 +28,8 @@ public class CartPage extends PageObject {
         return emptyCartBlock.getTextContent();
     }
 
-
-
-
+    public void proceedToCheckout(){
+        proceedToCheckoutButton.click();
+    }
 
 }

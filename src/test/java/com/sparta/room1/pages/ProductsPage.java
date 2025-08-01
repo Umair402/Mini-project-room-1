@@ -2,6 +2,7 @@ package com.sparta.room1.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,19 +14,18 @@ import net.thucydides.core.annotations.DefaultUrl;
 import java.util.List;
 
 
-@DefaultUrl("https://automationexercise.com/products")
+@DefaultUrl("https://automationexercise.com/")
 public class ProductsPage extends PageObject {
 
-    @FindBy(css = ".add-to-cart")
-    private List<WebElementFacade> AddToCartButtons;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[2]/div/div[1]/div[2]/div/a")
+    private WebElementFacade addToCartButtonOverlay;
 
-//    @FindBy(css = ".choice")
-//    private List<WebElementFacade> productDetailsButtons;
 
-    @FindBy(css = "a[href*='product_details']")
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/a")
+    private WebElementFacade addToCartButtonActual;
+
+    @FindBy(css = ".choice")
     private List<WebElementFacade> productDetailsButtons;
-
-
 
     @FindBy(css = ".shop-menu ul li a")
     private List<WebElementFacade> shopMenuButtons;
@@ -36,14 +36,16 @@ public class ProductsPage extends PageObject {
     @FindBy(tagName = "u")
     private WebElementFacade goToCartAfterAddingButton;
 
-    @FindBy(className = "fc-cta-consent")
-    private WebElementFacade consentButton;
-
     @FindBy(id = "quantity")
     private WebElementFacade quantityInput;
 
+    @FindBy(className = "fc-cta-consent")
+    private WebElementFacade consentButton;
+
     public void addToCartFromProductPage(int index){
-        AddToCartButtons.get(index).click();
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(addToCartButtonActual).perform();
+        addToCartButtonOverlay.click();
     }
 
     public void goToProductDetailsPage(int index){
@@ -66,6 +68,11 @@ public class ProductsPage extends PageObject {
         waitFor(consentButton).waitUntilClickable();
         consentButton.click();
     }
+    public void scrollToItem(){
+        Actions action = new Actions(getDriver());
+        action.scrollByAmount(0,600).perform();
+    }
+
 
 
 

@@ -8,15 +8,14 @@ import org.openqa.selenium.Keys;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
-import java.util.List;
 
-@DefaultUrl("https://automationexercise.com/product_details")
+@DefaultUrl("https://automationexercise.com/product_details/1")
 public class ProductDetailsPage extends PageObject {
 
-    @FindBy(id = "quantity")
+    @FindBy(name = "quantity")
     private WebElementFacade cartQuantity;
 
-    @FindBy(className = "btn-default")
+    @FindBy(className = "btn btn-default cart")
     private WebElementFacade addToCart;
 
     @FindBy(tagName = "u")

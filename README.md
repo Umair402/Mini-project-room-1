@@ -15,18 +15,23 @@ The generated report can be found in target/site/serenity/index.html
 
 ### Selected User Stories and tested Scenarios
 
-The following user story scenarios were tested. (A declarative style was adopted)
+The following user story scenarios were tested. 
+
+### Test Case 1
 
 ```gherkin
-Register User (Happy) - successfully create a new user account
-  
+Register User (Happy) - successfully create a new user account (declarative style)
+
 Given a user wants to create a new account
 When they provide a valid username and email
 And they enter valid personal information
 Then their account should be successfully created
 And they should see the account created message
 ```
+
+### Test Case 2
 ```gherkin
+Register User (Happy) - successfully logged in
 Given I launch the browser
 And I navigate to "http://automationexercise.com/"
 Then I should see the home page

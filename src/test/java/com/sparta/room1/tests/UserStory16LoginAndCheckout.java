@@ -4,8 +4,6 @@ import com.sparta.room1.pages.LoginPage;
 import com.sparta.room1.pages.ProductsPage;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.thucydides.core.annotations.Managed;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +14,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 @ExtendWith(SerenityJUnit5Extension.class)
-public class UserStory15_RegisterAndCheckout {
+public class UserStory16LoginAndCheckout {
     @Managed
     private WebDriver webDriver;
 
